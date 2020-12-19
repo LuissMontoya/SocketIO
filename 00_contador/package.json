@@ -1,0 +1,14 @@
+{
+  "name": "contador-conexiones",
+  "version": "1.0.0",
+  "description": "contador de conexiones activas con SocketIO",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon -e html app.js"
+  },
+  "author": "luissmontoyap",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^3.0.4"
+  }
+}
