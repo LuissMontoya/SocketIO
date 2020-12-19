@@ -17,6 +17,7 @@ http = require('http').createServer(server),
 fs= require('fs'),
 io= require('socket.io')(http)
 
+let connections = 0
 
 function server(req, res){
 fs.readFile('index.html',(err,data)=>{
@@ -38,4 +39,22 @@ io.on('connection', socket=>{
 
     socket.on('otro evento',data=>c(data))
 
+    connections++
+
+    c(`Conexiones Activas: ${connections}`)
+
+    socket.emit('connect users',{connections})  
+    //detectar el cambio   
+    socket.broadcast.emit('connect users',{connections})
+
+
+    socket.on('disconnect',()=>{
+        connections--
+        //detectar el cambio 
+        socket.broadcast.emit('connect users',{connections})
+        c(`Conexiones activas: ${connections}`)
+    })
+
+    
+    
 })

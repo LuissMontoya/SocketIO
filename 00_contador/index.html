@@ -23,8 +23,11 @@
 
                     io.emit('otro evento',{name:'Luis',twitter:'@luissmontoyap'})
 
-
                 })
+                    io.on('connect users', data=>{    
+                    c(`Actualizando desde el servidor. Hay ${data.connections} conexiones activas`)
+                    d.getElementById('connections').textContent= data.connections
+                    })
             })(document, console.log, io());
         </script>
     </p>
