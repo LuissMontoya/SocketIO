@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de Conexiones con Socket.IO</title>
 </head>
+
 <body>
     <h1>Contador de Conexiones con Socket.IO :) </h1>
+    <h2 id="hello"></h2>
+    <p>
+        Número de Conexiones activas:
+        <b id="connections"></b>
+        <script src="./socket.io/socket.io.js"></script>
+        <script>
+            ;
+            ((d, c, io) => {
+                io.on('hello', data => {
+                    c(data)
+                    d.getElementById('hello').textContent= data.message
+
+                    io.emit('otro evento',{name:'Luis',twitter:'@luissmontoyap'})
+
+
+                })
+            })(document, console.log, io());
+        </script>
+    </p>
 </body>
+
 </html>
