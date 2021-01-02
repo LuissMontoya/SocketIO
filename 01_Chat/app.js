@@ -28,10 +28,21 @@ app
 
 
 http.listen(port,()=>c(`Iniciando Chat en el Localhost:${port}`))
+let numUsers = 0;
 io.on('connection', socket=>{
-    socket.broadcast.emit('new user',{message:'Ha ingresado un usuario al Chat'})
+    socket.broadcast.emit('new user',{message:'Ha ingresado un usuario al Chat'},++numUsers,c('Cantidad de Usuarios',numUsers))
 
 
 socket.on('new message', message=>io.emit('user message',
 message))
+
+socket.on('disconnect',()=>{
+    let message='Ha salido un Usuario del Chat'
+    --numUsers
+    c(message)
+    c('Cantidad de Usuarios',numUsers)
+    socket.broadcast.emit('bye user',{message})
 })
+})
+
+//lado del servidor
