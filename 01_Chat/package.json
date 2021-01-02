@@ -1,0 +1,16 @@
+{
+  "name": "01_chat",
+  "version": "1.0.0",
+  "description": "un chat con expressJS y SocketIO",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon -e html,css app.js"
+  },
+  "author": "luissmontoyap",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6",
+    "socket.io": "^3.0.4"
+  }
+}
